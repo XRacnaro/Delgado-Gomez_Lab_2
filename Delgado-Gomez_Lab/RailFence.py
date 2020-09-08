@@ -1,24 +1,5 @@
-# Python3 program to illustrate 
-# Matriz Fence Texto_Cifrado Encryption 
-# and Decryption 
 
-"""
-Podria ser una clase rail fence en donde se establezca la matriz
-
-Clase rail fence:
-
-        Matriz = [['\n' for i in range(len(Texto))] 
-				for j in range(Niveles)]
-
-        Funcion Encriptar:
-
-        Función Desencriptar:
-
-Mas que nada es para hacer que el código se vea distinto al que copie
-
-"""
-
-# function to encrypt a message 
+# Función de encriptación en Rail Fence
 def Encriptar(Texto, Niveles): 
 
 	# create the matrix to Texto_Cifrado 
