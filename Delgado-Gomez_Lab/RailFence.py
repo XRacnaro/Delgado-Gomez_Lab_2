@@ -2,6 +2,17 @@
 # Matriz Fence Texto_Cifrado Encryption 
 # and Decryption 
 
+
+PENE
+
+
+
+
+
+
+
+
+
 """
 Podria ser una clase rail fence en donde se establezca la matriz
 
