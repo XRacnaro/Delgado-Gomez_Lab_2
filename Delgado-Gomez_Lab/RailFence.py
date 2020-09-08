@@ -32,7 +32,7 @@ def Encriptar(Texto, Niveles):
 				Resultado.append(Matriz[i][j]) 
 	return("" . join(Resultado)) #Intersecta las letras correspondientes a la lista resultado
 	
-#Esta función se encarga de desencriptar el txt
+#Esta función se encarga de descencriptar el txt
 def Desencriptar(Texto_Cifrado, Niveles): 
 
 	# Crea una matriz a partir de la palabra a cifrar y los niveles de encriptación
@@ -44,26 +44,25 @@ def Desencriptar(Texto_Cifrado, Niveles):
 	Fila = 0
 	Columna = 0
 	
-	# mark the places with '*' 
+	# Marca espacios con un '*' 
 	for i in range(len(Texto_Cifrado)): 
 		if Fila == 0: 
 			Bajar = True
 		if Fila == Niveles - 1: 
 			Bajar = False
 		
-		# place the marker 
+		# Marca los espacios
 		Matriz[Fila][Columna] = '*'
 		Columna += 1
 		
-		# find the next Fila 
-		# using direction flag 
+		# Encuentra la siguiente Fila 
 		if Bajar: 
 			Fila += 1
 		else: 
 			Fila -= 1
 			
-	# now we can construct the 
-	# fill the Matriz matrix 
+
+	# Llena la Matriz  
 	Indice = 0
 	for i in range(Niveles): 
 		for j in range(len(Texto_Cifrado)): 
@@ -72,26 +71,23 @@ def Desencriptar(Texto_Cifrado, Niveles):
 				Matriz[i][j] = Texto_Cifrado[Indice] 
 				Indice += 1
 		
-	# now read the matrix in 
-	# zig-zag manner to construct 
-	# the Resultadoant Texto 
+	# Lee la matriz en zig-zag para construir las palabras 
 	Resultado = [] 
 	Fila, Columna = 0, 0
 	for i in range(len(Texto_Cifrado)): 
 		
-		# check the direction of flow 
+		# Verifica la dirección
 		if Fila == 0: 
 			Bajar = True
 		if Fila == Niveles-1: 
 			Bajar = False
 			
-		# place the marker 
+		# Pone las letras
 		if (Matriz[Fila][Columna] != '*'): 
 			Resultado.append(Matriz[Fila][Columna]) 
 			Columna += 1
 			
-		# find the next Fila using 
-		# direction flag 
+		# Encuentra la siguiente fila
 		if Bajar: 
 			Fila += 1
 		else: 
