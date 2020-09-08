@@ -1,24 +1,25 @@
 import Cesar, RailFence
 import hashlib
-from Main_Encriptacion import HashTextoPlano
+from Main_Encriptacion import HashTextoPlano, N_Cesar, NivelesRailFence #Se exporta el hash del texto plano y los niveles de Cesar y RailFence
 
-TextoACifrar = open('mensajeseguro.txt','r+') #Txt que contiene el texto plano
-TextoPlano = TextoACifrar.readlines()[0]
-TextoACifrar.close()
+TextoDescrifrar = open('mensajeseguro.txt','r+') #Txt que contiene el texto encriptado por 2 cifrados de sustitución
+TextoEncriptado = TextoDescrifrar.readlines()[0]
+TextoDescrifrar.close()
 
-N_Cesar = 5 #Nro de veces de Cesar
-NivelesRailFence = 3 #Nro de bajas en Rail Fence
 
-TextoRailFence = RailFence.Desencriptar(TextoPlano, NivelesRailFence)
+DescifrarRailFence = RailFence.Desencriptar(TextoEncriptado, NivelesRailFence) #Descrifrado por RailFence
 
-TextoCesar = Cesar.Rot(-N_Cesar)(TextoRailFence) #Texto cifrado con Cesar
+DescifradoCesar = Cesar.Rot(-N_Cesar)(DescifrarRailFence) #Descifrado por Cesar
 
-TextoHash = hashlib.md5()
-textoAHashear = TextoCesar
-TextoHash.update(textoAHashear.encode())
-HashTextoDecifrado = TextoHash.hexdigest()
+#Metodo para Hashear el texto descrifrado
+HashTextoDescifrado = hashlib.md5()
+textoAHashear = DescifradoCesar
+HashTextoDescifrado.update(textoAHashear.encode())
+HashTextoDescencriptado = HashTextoDescifrado.hexdigest()
 
-if HashTextoPlano == HashTextoDecifrado:
+#Validador si el hash del texto plano es el mismo que el texto descrifrado
+if HashTextoPlano == HashTextoDescencriptado:
+  
     print("El mensaje no ha sido modificado")
 else:
     print("El mensaje ha sido adulterado")
